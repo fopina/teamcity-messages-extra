@@ -1,5 +1,5 @@
 test: _require_venv
-	pytest
+	pytest --cov
 
 # FIXME: https://github.com/pypa/pip/issues/11440
 deps:
