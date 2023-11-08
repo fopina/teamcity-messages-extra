@@ -32,7 +32,11 @@ classifiers = [
 dependencies = ["teamcity-messages==1.32"]
 
 [project.optional-dependencies]
-dev = ["black==23.1.0"]
+dev = [
+    "black>=23,<24",
+    "pytest>=7,<8",
+    "pytest-cov>=4,<5"
+]
 
 [tool.setuptools]
 packages = ["teamcity_extra"]
