@@ -5,16 +5,17 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "teamcity-messages-extra"
 dynamic = ["version"]
-description = "Let it hatch, watch it coil (your python virtualenv)"
+description = " Python Unit Test Reporting to TeamCity (EXTENDED)"
 authors = [
-    {name = "Filipe Pina", email = "fopina@skmobi.com"},
+    {name = "Filipe Pina", email = "fopina@duck.com"},
 ]
 readme = "README.md"
 requires-python = ">=3.7"
-keywords = ["productivity", "virtual env", "cleanup", "cli"]
+keywords = ['unittest', 'teamcity', 'test', 'nose', 'behave', 'flake8', 'py.test', 'pytest', 'jetbrains']
+
 license = {text = "MIT"}
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -24,22 +25,23 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Testing",
 ]
 
-[project.scripts]
-coil = "coil.__main__:main"
+dependencies = ["teamcity-messages==1.32"]
 
 [project.optional-dependencies]
 dev = ["black==23.1.0"]
 
 [tool.setuptools]
-packages = ["coil"]
+packages = ["teamcity_extra"]
 
 [tool.setuptools.dynamic]
-version = {attr = "coil.__version__"}
+version = {attr = "teamcity_extra.__version__"}
 
 [tool.coverage.run]
-source = ["coil"]
+source = ["teamcity_extra"]
 
 [tool.coverage.report]
 show_missing = true
