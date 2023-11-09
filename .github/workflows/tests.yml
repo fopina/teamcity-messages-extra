@@ -8,21 +8,22 @@ on:
   workflow_call:
 
 jobs:
-# TODO: https://github.com/devopshq/teamcity/issues/3 - comment carried over from .travis.yml
-#   style:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v4
-#     - name: Set up Python
-#       uses: actions/setup-python@v4
-#       with:
-#         python-version: '3.x'
+  style:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
 
-#     - name: requirements
-#       run: pip install -r test-requirements.txt
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        make deps
 
-#     - name: run checker
-#       run: flake8
+    - name: run checker
+      run: black --check .
 
   tests:
     runs-on: ubuntu-latest
@@ -34,7 +35,6 @@ jobs:
         python-version: '3.x'
 
     - name: Install dependencies
-      # FIXME: https://github.com/pypa/pip/issues/11440
       run: |
         python -m pip install --upgrade pip
         make deps
