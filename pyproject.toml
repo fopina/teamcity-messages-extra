@@ -31,8 +31,6 @@ dependencies = ["teamcity-messages==1.32"]
 
 [project.urls]
 homepage = "https://github.com/fopina/teamcity-messages-extra"
-documentation = "https://pypdfium2.readthedocs.io/"
-changelog = "https://pypdfium2.readthedocs.io/en/stable/changelog.h
 
 [project.optional-dependencies]
 dev = [
