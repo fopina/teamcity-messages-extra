@@ -1,5 +1,9 @@
+
 test: _require_venv
 	pytest --cov
+
+style:
+	black .
 
 # FIXME: https://github.com/pypa/pip/issues/11440
 deps:
