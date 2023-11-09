@@ -12,7 +12,7 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.7"
 keywords = ['unittest', 'teamcity', 'test', 'nose', 'behave', 'flake8', 'py.test', 'pytest', 'jetbrains']
-
+url = "https://github.com/fopina/teamcity-messages-extra"
 license = {text = "MIT"}
 classifiers = [
     "Development Status :: 5 - Production/Stable",
