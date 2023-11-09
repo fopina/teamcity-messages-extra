@@ -12,7 +12,6 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.7"
 keywords = ['unittest', 'teamcity', 'test', 'nose', 'behave', 'flake8', 'py.test', 'pytest', 'jetbrains']
-
 license = {text = "MIT"}
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -28,8 +27,10 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Topic :: Software Development :: Testing",
 ]
-
 dependencies = ["teamcity-messages==1.32"]
+
+[project.urls]
+homepage = "https://github.com/fopina/teamcity-messages-extra"
 
 [project.optional-dependencies]
 dev = [
