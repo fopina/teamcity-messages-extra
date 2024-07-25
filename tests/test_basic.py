@@ -1,7 +1,7 @@
-from unittest import TestCase
 import io
 import time
 from datetime import datetime
+from unittest import TestCase
 
 from teamcity_extra import messages
 
@@ -33,19 +33,19 @@ class Test(TestCase):
         self.assertOutput(
             "##teamcity[testMetadata timestamp='2000-11-02T10:23:01.556' name='link' testName='testName' type='link' value='https://github.com']\n",
         )
-    
+
     def test_buildStatisticValue(self):
         self.tsm.buildStatisticValue('myVal', '1')
         self.assertOutput(
             "##teamcity[buildStatisticValue timestamp='2000-11-02T10:23:01.556' key='myVal' value='1']\n",
         )
-    
+
     def test_addBuildTag(self):
         self.tsm.addBuildTag('customTag')
         self.assertOutput(
             "##teamcity[addBuildTag 'customTag']\n",
         )
-    
+
     def test_removeBuildTag(self):
         self.tsm.removeBuildTag('customTag')
         self.assertOutput(
