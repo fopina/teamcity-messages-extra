@@ -1,5 +1,7 @@
 from teamcity.messages import TeamcityServiceMessages as _TSM
 
+NO_OUTPUT = object()
+
 
 class TeamcityServiceMessages(_TSM):
     def testMetadata(self, testName, name, value='', type='', flowId=None):
@@ -17,3 +19,13 @@ class TeamcityServiceMessages(_TSM):
     def removeBuildTag(self, tag):
         # https://www.jetbrains.com/help/teamcity/service-messages.html#Adding+and+Removing+Build+Tags
         self._single_value_message('removeBuildTag', tag)
+
+    def message(self, messageName, **properties):
+        if self.output == NO_OUTPUT:
+            return
+        return super().message(messageName, **properties)
+
+    def _single_value_message(self, messageName, value):
+        if self.output == NO_OUTPUT:
+            return
+        return super()._single_value_message(messageName, value)
