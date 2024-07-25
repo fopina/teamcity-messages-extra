@@ -1,3 +1,4 @@
+import contextlib
 import io
 import time
 from datetime import datetime
@@ -50,4 +51,24 @@ class Test(TestCase):
         self.tsm.removeBuildTag('customTag')
         self.assertOutput(
             "##teamcity[removeBuildTag 'customTag']\n",
+        )
+
+    def test_default_output(self):
+        f = io.BytesIO()
+        with contextlib.redirect_stdout(f):
+            tsm = messages.TeamcityServiceMessages()
+            tsm.removeBuildTag('customTag')
+        self.assertEqual(
+            f.getvalue(),
+            b"##teamcity[removeBuildTag 'customTag']\n",
+        )
+
+    def test_no_output(self):
+        f = io.BytesIO()
+        with contextlib.redirect_stdout(f):
+            tsm = messages.TeamcityServiceMessages(output=messages.NO_OUTPUT)
+            tsm.removeBuildTag('customTag')
+        self.assertEqual(
+            f.getvalue(),
+            b"",
         )
