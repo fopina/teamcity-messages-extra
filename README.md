@@ -5,9 +5,13 @@
 [![Current version on PyPi](https://img.shields.io/pypi/v/teamcity-messages-extra)](https://pypi.org/project/teamcity-messages-extra/)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/teamcity-messages-extra)
 
-[teamcity-messages](https://pypi.org/project/teamcity-messages/) ([JetBrains official package](https://github.com/JetBrains/teamcity-messages/)) has no activity for over one year.
+[teamcity-messages](https://pypi.org/project/teamcity-messages/) ([JetBrains official package](https://github.com/JetBrains/teamcity-messages/)) is missing the convenience methods and optional output suppression provided by this package.
 
 This package will try to address some of the missing features by extending official one. It's not a fork, [teamcity-messages](https://pypi.org/project/teamcity-messages/) is an actual dependency so that any dependency analysis tools (eg, [dependency-check](https://owasp.org/www-project-dependency-check/)) properly identify it.
+
+Requires `teamcity-messages>=1.33`, with compatibility tested through `1.33`. Newer versions are allowed,
+but importing `teamcity_extra` emits a `RuntimeWarning` requesting a compatibility review and a
+[GitHub issue](https://github.com/fopina/teamcity-messages-extra/issues).
 
 ## Usage
 
