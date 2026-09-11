@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.release.tag_name }}
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -23,10 +25,47 @@ jobs:
       run: |
         pip install uv
         uv sync --dev
-    - name: Build and publish
+    - name: Set release version
+      env:
+        RELEASE_TAG: ${{ github.event.release.tag_name }}
+      run: |
+        uv run python - <<'PY'
+        import os
+        import re
+        from pathlib import Path
+        from packaging.version import Version
+
+        version = str(Version(os.environ['RELEASE_TAG']))
+        path = Path('teamcity_extra/__init__.py')
+        source, count = re.subn(r'^__version__ = .*$', f'__version__ = {version!r}', path.read_text(), flags=re.MULTILINE)
+        if count != 1:
+            raise SystemExit('Expected exactly one __version__ assignment')
+        path.write_text(source)
+        PY
+    - name: Build and verify
+      env:
+        RELEASE_TAG: ${{ github.event.release.tag_name }}
+      run: |
+        uv build
+        uv run twine check dist/*
+        uv run python - <<'PY'
+        import os
+        from email.parser import BytesParser
+        from pathlib import Path
+        from zipfile import ZipFile
+        from packaging.version import Version
+
+        wheel, = Path('dist').glob('*.whl')
+        with ZipFile(wheel) as archive:
+            metadata_path, = (name for name in archive.namelist() if name.endswith('.dist-info/METADATA'))
+            metadata = BytesParser().parsebytes(archive.read(metadata_path))
+        expected = Version(os.environ['RELEASE_TAG'])
+        if Version(metadata['Version']) != expected:
+            raise SystemExit(f"Built version {metadata['Version']} does not match release {expected}")
+        PY
+    - name: Publish
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        uv build
         uv run twine upload dist/*
