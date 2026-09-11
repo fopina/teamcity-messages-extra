@@ -42,8 +42,5 @@ jobs:
         python -m pip install --upgrade pip
         make deps
 
-    - name: Install upstream version under test
-      run: pip install 'teamcity-messages==1.33'
-
     - name: Run tests
       run: make test
