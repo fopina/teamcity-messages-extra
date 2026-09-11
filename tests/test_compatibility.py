@@ -11,7 +11,7 @@ class CompatibilityTest(TestCase):
         super().tearDown()
 
     def test_tested_versions_do_not_warn(self):
-        for version in ('1.32', '1.33', '1.33.0'):
+        for version in ('1.33', '1.33.0'):
             with self.subTest(version=version), mock.patch('teamcity.__version__', version):
                 with warnings.catch_warnings(record=True) as caught:
                     warnings.simplefilter('always')

@@ -9,7 +9,7 @@
 
 This package will try to address some of the missing features by extending official one. It's not a fork, [teamcity-messages](https://pypi.org/project/teamcity-messages/) is an actual dependency so that any dependency analysis tools (eg, [dependency-check](https://owasp.org/www-project-dependency-check/)) properly identify it.
 
-Requires `teamcity-messages>=1.32`, with compatibility tested through `1.33`. Newer versions are allowed,
+Requires `teamcity-messages>=1.33`, with compatibility tested through `1.33`. Newer versions are allowed,
 but importing `teamcity_extra` emits a `RuntimeWarning` requesting a compatibility review and a
 [GitHub issue](https://github.com/fopina/teamcity-messages-extra/issues).
 
