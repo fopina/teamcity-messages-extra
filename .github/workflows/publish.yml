@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install uv
-        uv sync --locked --dev
+        uv sync --dev
     - name: Build and publish
       env:
         TWINE_USERNAME: __token__

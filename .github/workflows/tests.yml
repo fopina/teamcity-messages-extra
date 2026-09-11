@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install uv
-        uv sync --locked --dev
+        uv sync --dev
 
     - name: run checker
       run: make style-check
@@ -40,7 +40,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install uv
-        uv sync --locked --dev
+        uv sync --dev
 
     - name: Run tests
       run: make test
